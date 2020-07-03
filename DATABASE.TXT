@@ -1,0 +1,68 @@
+GO
+
+CREATE TABLE [dbo].[Major](
+	[Major_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Cycles_Quantity] [int] NOT NULL,
+ CONSTRAINT [PK_Major] PRIMARY KEY CLUSTERED 
+(
+	[Major_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+/***************************************************************************************/
+GO
+
+CREATE PROCEDURE [dbo].[DeleteMajor] (@MajorId INTEGER) 
+AS 
+  BEGIN 
+      DELETE Major
+      WHERE  Major_Id = @MajorId; 
+  END
+
+/***************************************************************************************/
+GO
+
+CREATE PROCEDURE [dbo].[GetMajorById] (@MajorId INTEGER) 
+AS 
+  BEGIN 
+      Select *
+	  From Major
+      WHERE  Major_Id = @MajorId; 
+  END
+  
+/***************************************************************************************/
+GO
+
+CREATE PROCEDURE [dbo].[InsertMajor] ( @Name VARCHAR(50), @CyclesQuantity integer) 
+AS 
+  BEGIN 
+      insert into Major values(@Name,@CyclesQuantity) 
+  END
+  
+/***************************************************************************************/
+GO
+
+CREATE PROCEDURE [dbo].[SelectMajor]  
+AS 
+  BEGIN 
+      Select *
+	  From Major
+      
+  END
+
+/***************************************************************************************/
+GO
+
+CREATE PROCEDURE [dbo].[UpdateMajor] (@MajorId INTEGER, @Name VARCHAR(50), @CyclesQuantity integer) 
+AS 
+  BEGIN 
+      update major
+	  set Name=@Name, Cycles_Quantity=@CyclesQuantity
+	  where Major_Id=@MajorId
+  END
+ 
+
+
+
